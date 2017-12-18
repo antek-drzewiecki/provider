@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       resource :users do
         get :me, on: :collection
       end
+      resources :posts, only: :index
 
     end
   end
