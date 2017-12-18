@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
+  resources :posts
   get 'home/index'
 
   devise_for :users
   use_doorkeeper
-
 
   namespace :api do
     namespace :v1 do
