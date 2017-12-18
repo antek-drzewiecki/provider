@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
   def update_password
     @user = current_user
-    if @user.update(user_params)
+    if @user.update_with_password(user_params)
       Doorkeeper::AccessToken.where(resource_owner_id: @user.id).each(&:revoke)
       # Sign in the user by passing validation in case their password changed
       bypass_sign_in(@user)
@@ -22,6 +22,6 @@ class UsersController < ApplicationController
 
   def user_params
     # NOTE: Using `strong_parameters` gem
-    params.require(:user).permit(:password, :password_confirmation)
+    params.require(:user).permit(:password, :password_confirmation, :current_password)
   end
 end

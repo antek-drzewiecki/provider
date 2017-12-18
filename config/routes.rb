@@ -2,6 +2,12 @@ Rails.application.routes.draw do
   resources :posts
   get 'home/index'
 
+
+  resource :user, only: [:edit] do
+    collection do
+      patch 'update_password'
+    end
+  end
   devise_for :users
   use_doorkeeper
 
