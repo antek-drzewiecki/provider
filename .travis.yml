@@ -10,6 +10,8 @@ rvm:
 services:
   - postgresql
 
+before_script:
+  - bin/rake db:create
 script:
   - bin/rake db:migrate RAILS_ENV=test
   - bin/rake
